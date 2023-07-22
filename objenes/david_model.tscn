@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/orange/materials/material_001.tres" type="Material" id=1]
+
+[sub_resource type="CapsuleMesh" id=1]
+material = ExtResource( 1 )
+mid_height = 1.7
+
+[node name="david_skin" type="MeshInstance"]
+mesh = SubResource( 1 )

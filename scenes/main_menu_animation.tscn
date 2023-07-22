@@ -1,0 +1,135 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/green/textures/texture_01.png" type="Texture" id=1]
+[ext_resource path="res://objenes/main_menu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/orange/materials/material_007.tres" type="Material" id=3]
+[ext_resource path="res://scripts/ball_start.gd" type="Script" id=4]
+
+[sub_resource type="PhysicsMaterial" id=11]
+absorbent = true
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 0.1, 0.1, 0.1 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=12]
+material = SubResource( 10 )
+
+[sub_resource type="BoxShape" id=13]
+
+[sub_resource type="PhysicsMaterial" id=14]
+absorbent = true
+
+[sub_resource type="SphereMesh" id=15]
+material = ExtResource( 3 )
+
+[sub_resource type="SphereShape" id=16]
+
+[node name="main_menu_animation" type="Spatial"]
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( -0.381312, -0.624737, 0.681399, 0, 0.737089, 0.675796, -0.924446, 0.257689, -0.281061, 0, 19.7343, 0 )
+light_color = Color( 0.675781, 0.886017, 1, 1 )
+shadow_enabled = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.949442, -0.050015, 0.309933, 0, 0.987228, 0.159313, -0.313943, -0.151258, 0.937316, 2.4596, 3.12034, 7.63085 )
+
+[node name="main_menu" parent="Camera" instance=ExtResource( 2 )]
+
+[node name="floor" type="StaticBody" parent="."]
+transform = Transform( -4.37114e-07, -0.422618, -9.06308, 0, 0.906308, -4.22618, 10, -1.84732e-08, -3.9616e-07, 14.4375, 3.5336, 0 )
+physics_material_override = SubResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="floor"]
+mesh = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="floor"]
+shape = SubResource( 13 )
+
+[node name="floor2" type="StaticBody" parent="."]
+transform = Transform( 30, 0, 0, 0, 1, 0, 0, 0, 10, -23.2825, 0, 0 )
+physics_material_override = SubResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="floor2"]
+mesh = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="floor2"]
+shape = SubResource( 13 )
+
+[node name="floor3" type="StaticBody" parent="."]
+transform = Transform( 39, 0, 0, 0, 20, 0, 0, 0, 0.25, -15, 18, 10 )
+physics_material_override = SubResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="floor3"]
+shape = SubResource( 13 )
+
+[node name="floor4" type="StaticBody" parent="."]
+transform = Transform( 39, 0, 0, 0, 20, 0, 0, 0, 0.25, -15, 18, -10 )
+physics_material_override = SubResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="floor4"]
+shape = SubResource( 13 )
+
+[node name="floor5" type="StaticBody" parent="."]
+transform = Transform( 0.25, 0, 0, 0, 20, 0, 0, 0, 10, -55, 18, 0 )
+physics_material_override = SubResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="floor5"]
+shape = SubResource( 13 )
+
+[node name="floor6" type="StaticBody" parent="."]
+transform = Transform( 0.25, 0, 0, 0, 20, 0, 0, 0, 10, 22.5, 18, 0 )
+physics_material_override = SubResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="floor6"]
+shape = SubResource( 13 )
+
+[node name="floor7" type="StaticBody" parent="." groups=["restart"]]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 10, -50, 1.25, 0 )
+physics_material_override = SubResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="floor7"]
+mesh = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="floor7"]
+shape = SubResource( 13 )
+
+[node name="ball" type="RigidBody" parent="."]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 17.5, 25, 0 )
+mass = 6.12245
+physics_material_override = SubResource( 14 )
+contact_monitor = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="ball"]
+mesh = SubResource( 15 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ball"]
+shape = SubResource( 16 )

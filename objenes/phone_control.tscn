@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/touchscreen/front_button.gd" type="Script" id=1]
+[ext_resource path="res://scripts/touchscreen/quit_button.gd" type="Script" id=2]
+[ext_resource path="res://scripts/touchscreen/left_button.gd" type="Script" id=3]
+[ext_resource path="res://scripts/touchscreen/back_button.gd" type="Script" id=4]
+[ext_resource path="res://scripts/touchscreen/right_button.gd" type="Script" id=5]
+[ext_resource path="res://scripts/touchscreen/jump_button.gd" type="Script" id=6]
+[ext_resource path="res://scripts/touchscreen/use_button.gd" type="Script" id=7]
+
+[node name="phone_control" type="Node2D"]
+
+[node name="front" type="Button" parent="."]
+margin_left = 100.0
+margin_top = 950.0
+margin_right = 250.0
+margin_bottom = 1100.0
+text = "front"
+script = ExtResource( 1 )
+
+[node name="left" type="Button" parent="."]
+margin_top = 1100.0
+margin_right = 100.0
+margin_bottom = 1200.0
+text = "left"
+script = ExtResource( 3 )
+
+[node name="back" type="Button" parent="."]
+margin_left = 100.0
+margin_top = 1200.0
+margin_right = 250.0
+margin_bottom = 1350.0
+text = "back"
+script = ExtResource( 4 )
+
+[node name="right" type="Button" parent="."]
+margin_left = 250.0
+margin_top = 1100.0
+margin_right = 350.0
+margin_bottom = 1200.0
+rect_pivot_offset = Vector2( 13.411, 34 )
+action_mode = 0
+text = "right"
+script = ExtResource( 5 )
+
+[node name="use" type="Button" parent="."]
+margin_left = 350.0
+margin_top = 1200.0
+margin_right = 500.0
+margin_bottom = 1350.0
+rect_pivot_offset = Vector2( 13.411, 34 )
+action_mode = 0
+text = "use"
+script = ExtResource( 7 )
+
+[node name="jump" type="Button" parent="."]
+margin_left = 2000.0
+margin_top = 1000.0
+margin_right = 2300.0
+margin_bottom = 1300.0
+rect_pivot_offset = Vector2( 13.411, 34 )
+action_mode = 0
+text = "jump"
+script = ExtResource( 6 )
+
+[node name="quit" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 2313.7
+margin_top = 25.0
+margin_right = 2393.7
+margin_bottom = 100.0
+text = "Quit"
+script = ExtResource( 2 )

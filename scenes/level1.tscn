@@ -1,0 +1,323 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://objenes/david.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/purple/textures/texture_01.png" type="Texture" id=2]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/green/textures/texture_01.png" type="Texture" id=3]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/red/materials/material_001.tres" type="Material" id=4]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/dark/materials/material_004.tres" type="Material" id=5]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/red/materials/material_005.tres" type="Material" id=6]
+[ext_resource path="res://addons/kenney_prototypes/assets/colors/orange/materials/material_007.tres" type="Material" id=7]
+[ext_resource path="res://scripts/ball.gd" type="Script" id=8]
+[ext_resource path="res://scripts/button1.gd" type="Script" id=9]
+[ext_resource path="res://assets/fox_like_balls.png" type="Texture" id=10]
+[ext_resource path="res://scripts/ball_area.gd" type="Script" id=11]
+[ext_resource path="res://objenes/bullet.tscn" type="PackedScene" id=12]
+
+[sub_resource type="PhysicsMaterial" id=6]
+absorbent = true
+
+[sub_resource type="SpatialMaterial" id=7]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 2 )
+uv1_scale = Vector3( 0.1, 0.1, 0.1 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=1]
+material = SubResource( 7 )
+
+[sub_resource type="BoxShape" id=2]
+
+[sub_resource type="SpatialMaterial" id=15]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 0.1, 0.1, 0.1 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=8]
+material = SubResource( 15 )
+
+[sub_resource type="CubeMesh" id=9]
+material = ExtResource( 4 )
+
+[sub_resource type="CubeMesh" id=16]
+
+[sub_resource type="CubeMesh" id=12]
+material = ExtResource( 6 )
+
+[sub_resource type="SphereMesh" id=13]
+material = ExtResource( 7 )
+
+[sub_resource type="SphereShape" id=14]
+
+[sub_resource type="CubeMesh" id=11]
+material = ExtResource( 5 )
+
+[node name="level1" type="Spatial"]
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( -0.381312, -0.624737, 0.681399, 0, 0.737089, 0.675796, -0.924446, 0.257689, -0.281061, 0, 19.7343, 0 )
+light_color = Color( 0.675781, 0.886017, 1, 1 )
+shadow_enabled = true
+
+[node name="kinematics" type="Spatial" parent="."]
+
+[node name="floor" type="Spatial" parent="kinematics"]
+
+[node name="floor" type="StaticBody" parent="kinematics/floor"]
+transform = Transform( 100, 0, 0, 0, 0.1, 0, 0, 0, 100, 0, 0, 0 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/floor/floor"]
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/floor/floor"]
+shape = SubResource( 2 )
+
+[node name="floor2" type="StaticBody" parent="kinematics/floor"]
+transform = Transform( 10, 0, 0, 0, 0.866025, -5, 0, 0.5, 8.66025, -28, 4, -18 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/floor/floor2"]
+transform = Transform( 1, 0, 0, 0, 1, -1.43051e-06, 0, 0, 0.999999, 0, 0, 0 )
+mesh = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/floor/floor2"]
+shape = SubResource( 2 )
+
+[node name="floor3" type="StaticBody" parent="kinematics/floor"]
+transform = Transform( 10, 0, 0, 0, 0.707107, -7.07107, 0, 0.707107, 7.07107, -8, 4, -20 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/floor/floor3"]
+mesh = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/floor/floor3"]
+shape = SubResource( 2 )
+
+[node name="walls" type="Spatial" parent="kinematics"]
+
+[node name="wall" type="StaticBody" parent="kinematics/walls" groups=["walljump"]]
+transform = Transform( -4.37114e-07, -1, 0, -4.37114e-07, 1.91069e-15, -10, 10, -4.37114e-08, -4.37114e-07, -11, 16.2202, -36 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/walls/wall"]
+mesh = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/walls/wall"]
+shape = SubResource( 2 )
+
+[node name="wall2" type="StaticBody" parent="kinematics/walls" groups=["walljump"]]
+transform = Transform( -4.37114e-07, -1, 0, -4.37114e-07, 1.91069e-15, -10, 10, -4.37114e-08, -4.37114e-07, -6, 16.2202, -36 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/walls/wall2"]
+mesh = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/walls/wall2"]
+shape = SubResource( 2 )
+
+[node name="wall3" type="StaticBody" parent="kinematics/walls"]
+transform = Transform( 4.24264, 0.424264, 0, -4.24264, 0.424264, 0, 0, 0, 0.6, 28.5, 5, -6 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/walls/wall3"]
+transform = Transform( 1, 4.44089e-16, 0, 0, 1, 1.69407e-21, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 16 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/walls/wall3"]
+shape = SubResource( 2 )
+
+[node name="wall4" type="StaticBody" parent="kinematics/walls"]
+transform = Transform( 4.24264, 0.424264, 0, -4.24264, 0.424264, 0, 0, 0, 0.6, 28.5, 5, 6 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/walls/wall4"]
+transform = Transform( 1, 4.44089e-16, 0, 0, 1, 1.69407e-21, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 16 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/walls/wall4"]
+shape = SubResource( 2 )
+
+[node name="wall5" type="StaticBody" parent="kinematics/walls"]
+transform = Transform( -1.96701e-07, -0.6, 0, 4.5, -2.62268e-08, 0, 0, 0, 0.6, 24, 5, -6 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/walls/wall5"]
+transform = Transform( 1, 4.44089e-16, 0, 0, 1, 1.69407e-21, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 16 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/walls/wall5"]
+shape = SubResource( 2 )
+
+[node name="wall6" type="StaticBody" parent="kinematics/walls"]
+transform = Transform( -1.96701e-07, -0.6, 0, 4.5, -2.62268e-08, 0, 0, 0, 0.6, 24, 5, 6 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/walls/wall6"]
+transform = Transform( 1, 4.44089e-16, 0, 0, 1, 1.69407e-21, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 16 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/walls/wall6"]
+shape = SubResource( 2 )
+
+[node name="wall7" type="StaticBody" parent="kinematics/walls"]
+transform = Transform( -3.0598e-07, 0, 0.6, 0, 0.6, 0, -7, 0, -2.62268e-08, 24, 10, 0 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/walls/wall7"]
+transform = Transform( 1, 4.44089e-16, 0, 0, 1, 1.69407e-21, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 16 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/walls/wall7"]
+shape = SubResource( 2 )
+
+[node name="wall8" type="StaticBody" parent="kinematics/walls"]
+transform = Transform( -3.0598e-07, 0, 0.6, 0, 0.6, 0, -7, 0, -2.62268e-08, 28.5, 5, -6 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="kinematics/walls/wall8"]
+transform = Transform( -4.37114e-08, 0, 0.1, 0, 1, 0, -1, 0, -4.37116e-09, 0, -7, -6 )
+polygon = PoolVector2Array( 0.510967, 12.1086, -12.426, -0.744639, 0.511005, -0.745424 )
+margin = 0.001
+
+[node name="wall9" type="StaticBody" parent="kinematics/walls"]
+transform = Transform( -3.0598e-07, 0, 0.6, 0, 0.6, 0, -7, 0, -2.62268e-08, 28.5, 5, 6 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="kinematics/walls/wall9"]
+transform = Transform( -4.37114e-08, 0, 0.1, 0, 1, 0, -1, 0, -4.37115e-09, 0, -7, -6 )
+polygon = PoolVector2Array( 0.510967, 12.1086, -12.426, -0.744639, 0.511005, -0.745424 )
+margin = 0.001
+
+[node name="wall10" type="StaticBody" parent="kinematics/walls"]
+transform = Transform( -3.0598e-07, 0, 0.6, 0, 0.6, 0, -7, 0, -2.62268e-08, 28.5, 5, 0 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="kinematics/walls/wall10"]
+transform = Transform( 0.999999, 1.11022e-15, 0, 0, 0.707107, 0.0707107, -5.68434e-14, -0.707107, 0.0707107, -2.84217e-14, -7, 6 )
+polygon = PoolVector2Array( 0.771457, -0.777753, 0.771291, 20.219, -0.771519, 20.2209, -0.771394, -0.776856 )
+margin = 0.001
+
+[node name="wall of flesh" type="StaticBody" parent="kinematics/walls" groups=["alive"]]
+transform = Transform( -9.99996, 0.00275763, 4.37112e-07, -4.37114e-07, 1.91069e-15, -10, -0.0275763, -0.999996, 1.20538e-09, -6, 4.82667, 41.2703 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/walls/wall of flesh"]
+mesh = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/walls/wall of flesh"]
+shape = SubResource( 2 )
+
+[node name="usable" type="Spatial" parent="kinematics"]
+
+[node name="button1" type="StaticBody" parent="kinematics/usable" groups=["usable"]]
+transform = Transform( 0.24, 0, 0, 0, 0.05, 0, 0, 0, 0.24, 4, 2.05, -8 )
+physics_material_override = SubResource( 6 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/usable/button1"]
+mesh = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/usable/button1"]
+shape = SubResource( 2 )
+
+[node name="others" type="Spatial" parent="kinematics"]
+
+[node name="ball" type="RigidBody" parent="kinematics/others" groups=["ball"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0 )
+visible = false
+mass = 6.12245
+physics_material_override = SubResource( 6 )
+sleeping = true
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/others/ball"]
+mesh = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/others/ball"]
+shape = SubResource( 14 )
+
+[node name="button-base" type="StaticBody" parent="kinematics/others"]
+transform = Transform( 0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 4, 1, -8 )
+physics_material_override = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="kinematics/others/button-base"]
+mesh = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="kinematics/others/button-base"]
+shape = SubResource( 2 )
+
+[node name="you like playing with balls, don\'t you \?" type="Sprite3D" parent="kinematics/others"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 7.5, 0 )
+visible = false
+texture = ExtResource( 10 )
+
+[node name="ball_area" type="Area" parent="kinematics/others"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28.5, 5, 0 )
+script = ExtResource( 11 )
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="kinematics/others/ball_area"]
+transform = Transform( -3.27835e-08, 0, 1, 0, 0.75, 0, -0.75, 0, -4.37114e-08, 0, -5, -4 )
+depth = 10.0
+polygon = PoolVector2Array( 0.510967, 12.1086, -12.426, -0.744639, 0.511005, -0.745424 )
+margin = 0.001
+
+[node name="Bullet" parent="kinematics/others" instance=ExtResource( 12 )]
+transform = Transform( -1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -35, 10, 0 )
+
+[node name="David" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0 )
+__meta__ = {
+"_edit_group_": true
+}
